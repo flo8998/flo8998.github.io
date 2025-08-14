@@ -1,109 +1,321 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Florian – @flo8998 | Portfolio & Projekte</title>
+  <meta name="description" content="Portfolio, Projekte und Kontakt von Florian (@flo8998)." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="icon" href="https://github.com/flo8998.png" />
+  <meta property="og:title" content="Florian – @flo8998" />
+  <meta property="og:description" content="Portfolio, Projekte und Kontakt von Florian (@flo8998)." />
+  <meta property="og:image" content="https://github.com/flo8998.png" />
+  <meta property="og:url" content="https://flo8998.github.io" />
+  <meta name="twitter:card" content="summary" />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #101827;
+      --muted: #8aa0b6;
+      --text: #e5f0ff;
+      --brand: #0ea5e9; /* cyan-500 */
+      --brand-2: #22d3ee; /* cyan-400 */
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 20px 50px rgba(2, 6, 23, 0.5);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --panel: #ffffff;
+        --muted: #5b708b;
+        --text: #0b1220;
+        --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+      }
+    }
 
-    <head>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(34,211,238,0.12), transparent),
+                  radial-gradient(800px 400px at -10% 30%, rgba(14,165,233,0.12), transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>flo8998 - Coming Soon</title>
+    /* Layout */
+    .container { width: min(1100px, 100% - 2rem); margin: 0 auto; }
+    header.nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(8px);
+      background: color-mix(in srgb, var(--bg), transparent 30%);
+      border-bottom: 1px solid color-mix(in srgb, var(--muted), transparent 60%);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .8rem 0; }
+    .brand { display: flex; align-items: center; gap: .75rem; font-weight: 700; letter-spacing: .3px; }
+    .brand img { width: 36px; height: 36px; border-radius: 999px; box-shadow: var(--shadow); }
+    .brand small { color: var(--muted); font-weight: 600; }
+    nav a { color: var(--text); text-decoration: none; margin-left: 1rem; opacity: .9; }
+    nav a:hover { opacity: 1; }
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300,100,100italic,300italic,400italic,700,700italic">
-        
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+    /* Hero */
+    .hero { padding: 5rem 0 3.5rem; position: relative; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero .actions { justify-content: center; } }
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    .kicker { color: var(--brand-2); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: .85rem; }
+    .title { font-size: clamp(2rem, 3.2vw + 1rem, 3.4rem); line-height: 1.1; margin: .4rem 0 1rem; font-weight: 800; }
+    .subtitle { color: var(--muted); font-size: 1.05rem; }
+    .actions { display: flex; gap: .8rem; margin-top: 1.4rem; }
+    .btn { display: inline-flex; align-items: center; gap: .55rem; padding: .8rem 1rem; border-radius: 14px; font-weight: 700; border: 1px solid transparent; cursor: pointer; text-decoration: none; }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #001018; box-shadow: var(--shadow); }
+    .btn.ghost { background: transparent; border-color: color-mix(in srgb, var(--brand), transparent 60%); color: var(--text); }
 
-		<!-- Font Awesome -->
-		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> 
-    </head>
+    /* Sections */
+    section { padding: 3rem 0; }
+    section h2 { font-size: clamp(1.4rem, 1.2vw + 1rem, 2rem); margin: 0 0 1rem; }
+    section p.lead { color: var(--muted); margin: 0 0 1.5rem; }
 
-    <body>
+    /* About */
+    .about { display: grid; grid-template-columns: 120px 1fr; gap: 1.2rem; align-items: center; }
+    .about img { width: 120px; height: 120px; border-radius: 18px; border: 1px solid color-mix(in srgb, var(--muted), transparent 70%); box-shadow: var(--shadow); }
+    .about .meta { display: grid; gap: .25rem; }
+    .badge { display: inline-flex; align-items: center; gap: .4rem; padding: .2rem .5rem; font-size: .8rem; border: 1px solid color-mix(in srgb, var(--muted), transparent 60%); border-radius: 999px; color: var(--muted); }
 
-        <!-- Coming Soon -->
-        <div class="coming-soon">
-            <div class="inner-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                        	<div class="logo wow fadeInDown">
-                        		<h1>
-                        			<a href="">flo8998 -  Coming Soon </a>
-                        		</h1>
-                        	</div>
-                            <h2 class="wow fadeInDown">We will be <strong>BACK</strong> soon!</h2>
-                            <div class="timer wow fadeInUp">
-                                <div class="days-wrapper">
-                                    <span class="days"></span> <br>days
-                                </div> 
-                                <div class="hours-wrapper">
-                                    <span class="hours"></span> <br>hours
-                                </div> 
-                                <div class="minutes-wrapper">
-                                    <span class="minutes"></span> <br>minutes
-                                </div> 
-                                <div class="seconds-wrapper">
-                                    <span class="seconds"></span> <br>seconds
-                                </div>
-                            </div>
-                            <div class="wow fadeInDown">
-                            	<p>
-                            		To get latest updates about our site please sign up to our newsletter.
-                            	</p>
-                            </div>
-                            <div class="subscribe wow fadeInDown">
-			                    <form class="form-inline" action="" method="post">
-			                        <input type="text" name="email" placeholder="Enter your email..." class="subscribe-email">
-			                        <button type="submit" class="btn">Subscribe</button>
-			                    </form>
-			                    <div class="success-message"></div>
-			                    <div class="error-message"></div>
-			                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    /* Grid */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+
+    .card { background: var(--panel); border: 1px solid color-mix(in srgb, var(--muted), transparent 70%); border-radius: 16px; padding: 1rem; box-shadow: var(--shadow); display: grid; gap: .5rem; }
+    .card h3 { margin: .2rem 0; font-size: 1.1rem; }
+    .card p { color: var(--muted); margin: 0; min-height: 2.8em; }
+    .card .meta { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+    .chip { font-size: .8rem; background: color-mix(in srgb, var(--brand), transparent 85%); color: var(--text); padding: .2rem .6rem; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--brand), transparent 70%); }
+    .chip.warn { background: color-mix(in srgb, var(--warn), transparent 85%); border-color: color-mix(in srgb, var(--warn), transparent 70%); }
+    .chip.outline { background: transparent; border-color: color-mix(in srgb, var(--muted), transparent 50%); color: var(--muted); }
+
+    .repo-links { display: flex; gap: .5rem; margin-top: .5rem; }
+    .repo-links a { text-decoration: none; font-weight: 700; font-size: .92rem; }
+    .repo-links a:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer { padding: 2rem 0 4rem; color: var(--muted); text-align: center; }
+
+    /* Tiny util */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#main">Zum Inhalt springen</a>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Start">
+        <img src="https://github.com/flo8998.png" alt="Avatar von @flo8998" />
+        <div>
+          <div>@flo8998</div>
+          <small>Portfolio & Projekte</small>
         </div>
-        
-        <!-- Footer -->
-        <footer>
-	        <div class="container">
-	            <div class="row">
-	                <div class="col-sm-7 footer-copyright">
-	                    <p>Copyright 2015 | All Rights Reserved - Template by  <a href="http://webthemez.com">WebThemez.com</a></p>
-	                </div>
-	                <div class="col-sm-5 footer-social pull-right">
-	                	<ul class="social-icon">
-								<li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
-								<li><a href=""><i class="fa fa-facebook-square"></i></a></li>
-								<li><a href=""><i class="fa fa-twitter-square"></i></a></li>
-								<li><a href=""><i class="fa fa-youtube-square"></i></a></li>
-							</ul> 
-	                </div>
-	            </div>
-	        </div>
-        </footer>
+      </a>
+      <nav aria-label="Hauptnavigation">
+        <a href="#about">Über mich</a>
+        <a href="#projects">Projekte</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </div>
+  </header>
 
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="kicker">Hallo, ich bin Florian</div>
+          <h1 class="title">Builder, Tüftler und <span style="white-space:nowrap">Open‑Source‑Fan</span> ⚡</h1>
+          <p class="subtitle">Auf dieser Seite findest du meine aktuellsten Repositories, ein bisschen Kontext und die Links, wie du mich erreichst. Die Liste unten lädt live aus der GitHub‑API – always fresh ✨.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://github.com/flo8998" target="_blank" rel="noopener">Auf GitHub folgen</a>
+            <a class="btn ghost" href="#projects">Neueste Projekte</a>
+          </div>
+        </div>
+        <div>
+          <div class="card" aria-live="polite" aria-busy="true">
+            <h3 style="margin:0">Kurzprofil</h3>
+            <div class="about" id="about">
+              <img src="https://github.com/flo8998.png" alt="Avatar von Florian (@flo8998)" />
+              <div class="meta">
+                <div id="fullName" style="font-weight:700">Florian</div>
+                <div class="badge" id="account">@flo8998</div>
+                <div id="bio" style="color:var(--muted)">—</div>
+                <div class="meta" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem">
+                  <span class="chip outline" id="followers">Follower: —</span>
+                  <a class="chip" id="website" href="https://mastra-gaming.de" target="_blank" rel="noopener">mastra‑gaming.de</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Javascript -->
-        <script src="assets/js/jquery-1.10.2.min.js"></script>
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/jquery.countdown.min.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
-        
-        <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
+    <section id="projects">
+      <div class="container">
+        <h2>Neueste Repositories</h2>
+        <p class="lead">Direkt aus <code>api.github.com</code> geladen (max. 6 Repos, nach Aktualität sortiert). Forks werden markiert.</p>
+        <div class="grid" id="repo-grid" aria-live="polite">
+          <!-- JS füllt hier Karten rein -->
+        </div>
+        <p style="margin-top:1rem">
+          <a class="btn ghost" href="https://github.com/flo8998?tab=repositories" target="_blank" rel="noopener">Alle Repositories ansehen →</a>
+        </p>
+      </div>
+    </section>
 
-    </body>
+    <section id="contact">
+      <div class="container">
+        <h2>Kontakt & Links</h2>
+        <div class="grid" style="align-items:stretch">
+          <div class="card">
+            <h3>GitHub</h3>
+            <p>Issues? Feedback? Star da lassen? Du findest mich hier:</p>
+            <div class="repo-links">
+              <a class="btn primary" href="https://github.com/flo8998" target="_blank" rel="noopener">@flo8998 öffnen</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Website</h3>
+            <p>Hier kommt man zu meiner Website</p>
+            <div class="repo-links">
+              <a class="btn ghost" href="https://mastra-gaming.de" target="_blank" rel="noopener">mastra‑gaming.de besuchen</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Diese Seite</h3>
+            <p>Hosted mit <strong>GitHub Pages</strong>. Du kannst den Code forken und nutzen.</p>
+            <div class="repo-links">
+              <a class="btn ghost" href="https://github.com/flo8998/flo8998.github.io" target="_blank" rel="noopener">Repository öffnen</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> Florian (@<a href="https://github.com/flo8998" target="_blank" rel="noopener" style="color:inherit">flo8998</a>). Letztes Update: <span id="lastUpdated">—</span>.</small>
+    </div>
+  </footer>
+
+  <!-- Person Schema.org for nicer search results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Florian",
+    "url": "https://flo8998.github.io",
+    "image": "https://github.com/flo8998.png",
+    "sameAs": [
+      "https://github.com/flo8998",
+      "https://mastra-gaming.de"
+    ]
+  }
+  </script>
+
+  <script>
+    const GH_USER = "flo8998";
+
+    const repoGrid = document.getElementById("repo-grid");
+    const fullNameEl = document.getElementById("fullName");
+    const bioEl = document.getElementById("bio");
+    const websiteEl = document.getElementById("website");
+    const followersEl = document.getElementById("followers");
+    const lastUpdatedEl = document.getElementById("lastUpdated");
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Helper: create a repository card
+    function repoCard(repo) {
+      const isFork = !!repo.fork;
+      const homepage = repo.homepage && repo.homepage.trim() !== "" ? repo.homepage : null;
+      const lang = repo.language || "—";
+      const stars = repo.stargazers_count || 0;
+      const updated = new Date(repo.updated_at);
+
+      const card = document.createElement("article");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p>${repo.description ? repo.description : "Keine Beschreibung hinterlegt."}</p>
+        <div class="meta">
+          <span class="chip outline" title="Sprache">${lang}</span>
+          <span class="chip outline" title="Stars">★ ${stars}</span>
+          <span class="chip outline" title="Zuletzt aktualisiert">${updated.toLocaleDateString()}</span>
+          ${isFork ? '<span class="chip warn" title="Fork">Fork</span>' : ''}
+        </div>
+        <div class="repo-links">
+          <a href="${repo.html_url}" target="_blank" rel="noopener" class="btn primary">Repo</a>
+          ${homepage ? `<a href="${homepage}" target="_blank" rel="noopener" class="btn ghost">Demo</a>` : ''}
+        </div>
+      `;
+      return card;
+    }
+
+    // Fetch profile info
+    fetch(`https://api.github.com/users/${GH_USER}`)
+      .then(r => r.json())
+      .then(user => {
+        if (user.name) fullNameEl.textContent = user.name;
+        bioEl.textContent = user.bio || "";
+        if (user.blog) {
+          websiteEl.href = user.blog.startsWith('http') ? user.blog : `https://${user.blog}`;
+          websiteEl.textContent = new URL(websiteEl.href).host;
+        }
+        followersEl.textContent = `Follower: ${user.followers}`;
+        lastUpdatedEl.textContent = new Date().toLocaleString();
+      })
+      .catch(() => {
+        bioEl.textContent = "Profil konnte nicht geladen werden.";
+      });
+
+    // Fetch latest repositories
+    function loadRepos() {
+      repoGrid.innerHTML = "";
+      // skeletons
+      for (let i = 0; i < 6; i++) {
+        const s = document.createElement('div');
+        s.className = 'card';
+        s.innerHTML = '<div style="height:1.1rem;width:60%;background:color-mix(in srgb, var(--muted), transparent 85%);border-radius:10px"></div>'+
+                      '<div style="height:3.2rem;margin-top:.6rem;background:color-mix(in srgb, var(--muted), transparent 90%);border-radius:10px"></div>';
+        repoGrid.appendChild(s);
+      }
+
+      fetch(`https://api.github.com/users/${GH_USER}/repos?sort=updated&per_page=6`)
+        .then(r => r.json())
+        .then(repos => {
+          repoGrid.innerHTML = "";
+          repos
+            .sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at))
+            .slice(0, 6)
+            .forEach(repo => repoGrid.appendChild(repoCard(repo)));
+
+          if (repoGrid.children.length === 0) {
+            const msg = document.createElement('p');
+            msg.className = 'lead';
+            msg.textContent = 'Keine Repositories gefunden.';
+            repoGrid.parentElement.appendChild(msg);
+          }
+        })
+        .catch(() => {
+          repoGrid.innerHTML = '<p class="lead">Fehler beim Laden der Repositories.</p>';
+        });
+    }
+
+    loadRepos();
+  </script>
+</body>
 </html>
